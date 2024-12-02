@@ -1,0 +1,63 @@
+<div class="space-y-6">
+    <h1 class="text-3xl font-bold">Oppsett av Ubuntu Server VM</h1>
+
+    <div class="space-y-4">
+        <h2 class="text-2xl font-semibold">1. Installer Ubuntu Server</h2>
+        <ol class="list-decimal ml-6 space-y-2">
+            <li>Monter Ubuntu Server ISO til VM-en</li>
+            <li>Start VM-en og begynn installasjonen</li>
+            <li>Velg språk og tastaturoppsett</li>
+            <li>Velg "Installer Ubuntu Server"</li>
+        </ol>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <img src="/img/setupubuntuwebserver/1.png" alt="Velg språk" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/2.png" alt="Installer Ubuntu" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/3.png" alt="Keyboard configuration" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/4.png" alt="Installation type" class="rounded-lg shadow-md">
+        </div>
+
+        <h2 class="text-2xl font-semibold">2. Nettverkskonfigurasjon</h2>
+        <ul class="list-disc ml-6 space-y-2">
+            <li>Konfigurer nettverksgrensesnitt</li>
+            <li>Sett statisk IP-adresse (anbefalt)</li>
+            <li>Konfigurer DNS-innstillinger</li>
+        </ul>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <img src="/img/setupubuntuwebserver/5.png" alt="Network configuration" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/6.png" alt="Proxy configuration" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/7.png" alt="Mirror selection" class="rounded-lg shadow-md">
+        </div>
+
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <p>Eksempel på nettverkskonfigurasjon:</p>
+            <pre>
+IP-adresse: 10.12.pool.100
+Nettmaske: 10.12.pool.0/24
+Gateway: 10.12.pool.1
+DNS: 10.12.pool.10, 10.10.1.30, 1.1.1.1, 1.0.0.1</pre>
+        </div>
+
+        <h2 class="text-2xl font-semibold">3. Diskoppsett og Systemkonfigurasjon</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <img src="/img/setupubuntuwebserver/8.png" alt="Storage configuration" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/9.png" alt="Storage layout" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/10.png" alt="Profile setup" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/11.png" alt="SSH Setup" class="rounded-lg shadow-md">
+        </div>
+
+        <h2 class="text-2xl font-semibold">4. Fullfør Installasjonen</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <img src="/img/setupubuntuwebserver/12.png" alt="Featured Server Snaps" class="rounded-lg shadow-md">
+            <img src="/img/setupubuntuwebserver/13.png" alt="Installation Complete" class="rounded-lg shadow-md">
+        </div>
+
+        <h2 class="text-2xl font-semibold">5. Systemoppdateringer</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <p>Kjør følgende kommandoer:</p>
+            <code>sudo apt update</code><br>
+            <code>sudo apt upgrade -y</code>
+        </div>
+    </div>
+</div> 

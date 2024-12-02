@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubuntu Webserver Tutorial</title>
+</head>
+<body>
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <div class="flex min-h-screen">
+        <!-- Left sidebar with titles -->
+        <div class="w-1/4 bg-gray-100 p-6 border-r">
+            <ul class="space-y-4">
+                <li>
+                    <button onclick="loadContent('setup-vsphere.html')" 
+                            class="w-full text-left px-4 py-2 rounded hover:bg-gray-200 transition-colors">
+                        Sett opp vSphere Server
+                    </button>
+                </li>
+                <li>
+                    <button onclick="loadContent('setup-ubuntu-vm.html')" 
+                            class="w-full text-left px-4 py-2 rounded hover:bg-gray-200 transition-colors">
+                        Sett opp Ubuntu Webserver
+                    </button>
+                </li>
+                <li>
+                    <button onclick="loadContent('setup-nginx.html')"
+                            class="w-full text-left px-4 py-2 rounded hover:bg-gray-200 transition-colors">
+                        Sett opp Nginx
+                    </button>
+                </li>
+                <li>
+                    <button onclick="loadContent('go-to-site.html')"
+                            class="w-full text-left px-4 py-2 rounded hover:bg-gray-200 transition-colors">
+                        Gå til Nettsiden
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right content area -->
+        <div id="content" class="w-3/4 p-6">
+            <h1 class="text-3xl font-bold mb-6">Velkommen til Ubuntu Webserver Veiledning</h1>
+            <p class="mb-4">Denne veiledningen vil guide deg gjennom prosessen med å sette opp en Ubuntu webserver ved hjelp av:</p>
+            <ul class="list-disc ml-6 mb-6">
+                <li>VMware vSphere for virtualisering</li>
+                <li>Ubuntu Server som operativsystem</li>
+                <li>Nginx som webserver</li>
+            </ul>
+            <p class="mb-4">Følg navigasjonsmenyen til venstre for å gå gjennom hvert trinn i oppsettet.</p>
+            <div class="bg-blue-100 p-4 rounded">
+                <p class="text-blue-800">Forutsetninger:</p>
+                <ul class="list-disc ml-6 text-blue-700">
+                    <li>Tilgang til VMware vSphere-miljø</li>
+                    <li>Ubuntu Server ISO-fil</li>
+                    <li>Grunnleggende kunnskap om Linux-kommandoer</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadContent(filename) {
+            try {
+                const response = await fetch(filename);
+                const content = await response.text();
+                document.getElementById('content').innerHTML = content;
+            } catch (error) {
+                document.getElementById('content').innerHTML = 
+                    '<p class="text-red-500">Error loading content</p>';
+            }
+        }
+    </script>
+</body>
+</html>

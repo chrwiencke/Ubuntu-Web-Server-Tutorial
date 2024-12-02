@@ -1,0 +1,58 @@
+<div class="space-y-6">
+    <h1 class="text-3xl font-bold">Oppsett av Nginx Webserver</h1>
+
+    <div class="space-y-4">
+        <h2 class="text-2xl font-semibold">1. Installer Nginx</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code>sudo apt install nginx -y</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">2. Konfigurer Brannmur</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm space-y-2">
+            <p>Tillat HTTP og HTTPS trafikk:</p>
+            <code>sudo ufw allow 'Nginx Full'</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">3. Verifiser Installasjon</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm space-y-2">
+            <p>Sjekk Nginx status:</p>
+            <code>sudo systemctl status nginx</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">4. Grunnleggende Nginx Konfigurasjon</h2>
+        <p>Rediger standardkonfigurasjonen:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code>sudo nano /etc/nginx/sites-available/default</code>
+        </div>
+        
+        <p>Eksempel på grunnleggende konfigurasjon:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code class="block whitespace-pre-wrap">server {
+    listen 80;
+    listen [::]:80;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}</code>
+        </div>
+
+        <p>Dette setter opp en enkel filserver som:</p>
+        <ul class="list-disc ml-6 text-sm text-gray-600">
+            <li>Lytter på port 80</li>
+            <li>Serverer filer fra /var/www/html</li>
+            <li>Bruker index.html som standardside</li>
+            <li>Aksepterer alle hostnavn</li>
+        </ul>
+
+        <div class="bg-yellow-100 p-4 rounded">
+            <p class="text-yellow-800">Husk å omstarte Nginx etter konfigurasjonsendringer:</p>
+            <code class="text-yellow-800">sudo systemctl restart nginx</code>
+        </div>
+    </div>
+</div> 

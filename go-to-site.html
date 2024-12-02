@@ -1,0 +1,33 @@
+<div class="space-y-6">
+    <h1 class="text-3xl font-bold">Tilgang til Din Webserver</h1>
+
+    <div class="space-y-4">
+        <h2 class="text-2xl font-semibold">Åpne Nettsiden Din</h2>
+        <p>Du kan nå få tilgang til nettsiden din ved å bruke:</p>
+        
+        <div class="bg-gray-100 p-4 rounded">
+            <code>http://din-server-ip</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">Feilsøking</h2>
+        <ul class="list-disc ml-6 space-y-2">
+            <li>Verifiser at Nginx kjører: <code class="bg-gray-100 px-2 py-1">systemctl status nginx</code></li>
+            <li>Sjekk brannmurinnstillinger: <code class="bg-gray-100 px-2 py-1">sudo ufw status</code></li>
+            <li>Se Nginx feillogger: <code class="bg-gray-100 px-2 py-1">sudo tail -f /var/log/nginx/error.log</code></li>
+        </ul>
+
+        <div class="bg-green-100 p-4 rounded">
+            <p class="text-green-800">Gratulerer! Du har nå satt opp din Ubuntu webserver med Nginx!</p>
+        </div>
+
+        <div class="bg-blue-100 p-4 rounded">
+            <p class="text-blue-800">Neste Steg:</p>
+            <ul class="list-disc ml-6 text-blue-700">
+                <li>Sett opp SSL/HTTPS</li>
+                <li>Konfigurer egne domenenavn</li>
+                <li>Sett opp webapplikasjoner</li>
+                <li>Konfigurer serverovervåking</li>
+            </ul>
+        </div>
+    </div>
+</div> 
