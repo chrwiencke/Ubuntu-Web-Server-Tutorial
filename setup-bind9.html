@@ -1,0 +1,97 @@
+<div class="space-y-6">
+    <h1 class="text-3xl font-bold">Oppsett av BIND9 DNS Server</h1>
+
+    <div class="space-y-4">
+        <h2 class="text-2xl font-semibold">1. Installer BIND9</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code>sudo apt install bind9 bind9utils -y</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">2. Konfigurer Named Options</h2>
+        <p>Rediger named.conf.options:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code>sudo nano /etc/bind/named.conf.options</code>
+        </div>
+        
+        <p>Legg til eller oppdater følgende konfigurasjon:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code class="block whitespace-pre-wrap">options {
+        directory "/var/cache/bind";
+        allow-query { any; };
+        listen-on { any; };
+        forwarders {
+                8.8.8.8;
+                8.8.4.4;
+        };
+};</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">3. Konfigurer Lokal Sone</h2>
+        <p>Rediger named.conf.local:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code>sudo nano /etc/bind/named.conf.local</code>
+        </div>
+
+        <p>Legg til sone-konfigurasjon:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code class="block whitespace-pre-wrap">zone "ikt-fag.no" {
+        type master;
+        file "/etc/bind/zones/db.ikt-fag.no";
+};</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">4. Opprett Sonefil</h2>
+        <p>Lag zones-mappe og opprett sonefil:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm space-y-2">
+            <code>sudo mkdir /etc/bind/zones</code>
+            <code>sudo nano /etc/bind/zones/db.ikt-fag.no</code>
+        </div>
+
+        <p>Legg til følgende innhold i sonefilen:</p>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm">
+            <code class="block whitespace-pre-wrap">$TTL    604800
+@       IN      SOA     ns2.ikt-fag.no. admin.ikt-fag.no. (
+                     2023121001         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns2.ikt-fag.no.
+@       IN      A       10.12.2.10
+ns2     IN      A       10.12.2.10
+tutorial.skynet IN      A       10.12.2.10</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">5. Verifiser Konfigurasjon</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm space-y-2">
+            <p>Sjekk syntaks for konfigurasjonsfilene:</p>
+            <code>sudo named-checkconf</code>
+            <p>Sjekk sonefilen:</p>
+            <code>sudo named-checkzone ikt-fag.no /etc/bind/zones/db.ikt-fag.no</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">6. Start og Aktiver BIND9</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm space-y-2">
+            <code>sudo systemctl restart bind9</code>
+            <code>sudo systemctl enable bind9</code>
+        </div>
+
+        <h2 class="text-2xl font-semibold">7. Test DNS-oppsettet</h2>
+        <div class="bg-gray-100 p-4 rounded font-mono text-sm space-y-2">
+            <p>Test oppslaget med dig:</p>
+            <code>dig tutorial.skynet.ikt-fag.no @10.12.2.10</code>
+            <p>Eller med nslookup:</p>
+            <code>nslookup tutorial.skynet.ikt-fag.no 10.12.2.10</code>
+        </div>
+
+        <div class="bg-yellow-100 p-4 rounded">
+            <p class="text-yellow-800">Viktige merknader:</p>
+            <ul class="list-disc ml-6 text-sm text-yellow-800">
+                <li>Husk å oppdatere serienummeret i sonefilen hver gang du gjør endringer</li>
+                <li>Kontroller at brannmuren tillater DNS-trafikk (UDP/TCP port 53)</li>
+                <li>Klientmaskiner må konfigureres til å bruke denne DNS-serveren</li>
+            </ul>
+        </div>
+    </div>
+</div> 
